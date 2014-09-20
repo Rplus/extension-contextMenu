@@ -34,6 +34,18 @@ chrome.contextMenus.create({
 });
 
 chrome.contextMenus.create({
+    'title': 'm.facebook',
+    'contexts': ['page', 'link'],
+    'parentId': parent,
+    'onclick': function (info, tab) {
+        var url = info.linkUrl || info.pageUrl;
+        if (/www\.facebook\.com/.test(url)) {
+            window.open(url.replace(/www\.facebook\.com/, 'm.facebook.com'));
+        }
+    }
+});
+
+chrome.contextMenus.create({
     'title': 'open iframe',
     'contexts': ['frame'],
     'parentId': parent,

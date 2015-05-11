@@ -34,13 +34,15 @@ chrome.contextMenus.create({
 });
 
 chrome.contextMenus.create({
-    'title': 'm.facebook',
+    'title': 'FB',
     'contexts': ['page', 'link'],
     'parentId': parent,
     'onclick': function (info, tab) {
         var url = info.linkUrl || info.pageUrl;
         if (/www\.facebook\.com/.test(url)) {
             window.open(url.replace(/www\.facebook\.com/, 'm.facebook.com'));
+        } else if (/m\.facebook\.com/.test(url)) {
+            window.open(url.replace(/m\.facebook\.com/, 'www.facebook.com'));
         }
     }
 });

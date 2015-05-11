@@ -40,9 +40,23 @@ chrome.contextMenus.create({
     'onclick': function (info, tab) {
         var url = info.linkUrl || info.pageUrl;
         if (/www\.facebook\.com/.test(url)) {
+
             window.open(url.replace(/www\.facebook\.com/, 'm.facebook.com'));
+
         } else if (/m\.facebook\.com/.test(url)) {
-            window.open(url.replace(/m\.facebook\.com/, 'www.facebook.com'));
+
+            var personalUrl = url.match(/story_fbid=(\d+)&id=(\d+)/);
+
+            if (personalUrl) {
+
+                window.open('https://www.facebook.com/' + personalUrl[2] + '/posts/' + personalUrl[1]);
+
+            } else {
+
+                window.open(url.replace(/m\.facebook\.com/, 'www.facebook.com'));
+
+            }
+
         }
     }
 });

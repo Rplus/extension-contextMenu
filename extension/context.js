@@ -22,6 +22,16 @@ var parent = chrome.contextMenus.create({
 });
 
 chrome.contextMenus.create({
+  'title': '`. get Twitter text',
+  'contexts': ['page', 'link'],
+  'parentId': parent,
+  'onclick': (info, tab) => {
+    var txt = `${tab.title}%0Aby%0A${tab.url}%0A%23f2etw`;
+    window.open(`https://twitter.com/intent/tweet?text=${txt}`);
+  }
+});
+
+chrome.contextMenus.create({
   'title': '1. 繁',
   'contexts': ['page', 'link'],
   'parentId': parent,

@@ -1,8 +1,8 @@
 {
    "name": "__MSG_ext_name__",
-   "version": "0.1.0",
+   "version": "0.2.0",
    "manifest_version": 2,
-   "permissions": [ "contextMenus" , "https://*/", "http://*/"],
+   "permissions": [ "activeTab", "contextMenus" , "https://*/", "http://*/"],
    "default_locale": "zh_TW",
    "background": {
      "scripts": ["context.js"]

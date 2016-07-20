@@ -40,7 +40,7 @@ chrome.contextMenus.create({
 
         var txt = title + '%0Aby ' + author + ' ' + date + '%0A' + url + '%0A%23f2etw';
 
-        window.open('data:text/html,<textarea style="font-size: 3em; width: 50vw; height: 50vh;">' + txt + '</textarea>');
+        window.open('data:text/html;charset=utf-8,<meta charset="utf-8"><textarea style="font-size: 3em; width: 50vw; height: 50vh;">' + txt + '</textarea>');
       `
     });
   }

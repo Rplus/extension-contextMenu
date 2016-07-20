@@ -86,6 +86,20 @@ chrome.contextMenus.create({
 });
 
 chrome.contextMenus.create({
+  'title': '4. Twitter',
+  'contexts': ['page', 'link'],
+  'parentId': parent,
+  'onclick': function (info, tab) {
+    var url = info.linkUrl || info.pageUrl;
+    if (/\/\/twitter\.com/.test(url)) {
+      window.open(url.replace(/twitter\.com/, 'mobile.twitter.com'));
+    } else if (/mobile\.twitter\.com/.test(url)) {
+      window.open(url.replace(/mobile\.twitter\.com/, 'twitter.com'));
+    }
+  }
+});
+
+chrome.contextMenus.create({
   'title': 'open img',
   'contexts': ['image'],
   'onclick': function (info, tab) {

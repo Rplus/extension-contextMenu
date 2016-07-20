@@ -37,7 +37,7 @@ chrome.contextMenus.create({
   'parentId': parent,
   'onclick': function (info, tab) {
     var url = info.linkUrl || info.pageUrl;
-    window.open('http://translate.google.com/translate?sl=auto&tl=zh-TW&u=' + url);
+    window.open('https://translate.google.com/translate?sl=auto&tl=zh-TW&u=' + url);
   }
 });
 

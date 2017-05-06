@@ -26,23 +26,15 @@ chrome.contextMenus.create({
   'contexts': ['page', 'link'],
   'parentId': parent,
   'onclick': (info, tab) => {
-    chrome.tabs.executeScript({
-      code: `
-        var title = document.title || '';
-        var getContent = (query) => (document.querySelector(query) || {content: ''}).content;
-        var author = getContent('meta[name="author"]') || getContent('meta[name="twitter:creator"]');
-        var date = getContent('meta[name="date"]') || getContent('meta[property="article:published_time"]').split('T')[0];
-        var url = getContent('meta[property="twitter:url"]');
-        if (!url) {
-          url = document.querySelector('link[rel="canonical"]');
-          url = url && url.href || document.location.href.split('?utm')[0];
-        }
+    let url = tab.url.split('?utm')[0];
 
-        var txt = title + '%0Aby ' + author + ' ' + date + '%0A' + url + '%0A%23f2etw';
-
-        window.open('data:text/html;charset=utf-8,<meta charset="utf-8"><textarea style="font-size: 3em; width: 50vw; height: 50vh;">' + txt + '</textarea>');
-      `
-    });
+    chrome.tabs.create({'url': `data:text/html;charset=utf-8,<meta charset="utf-8"><textarea style="font-size: 3em; width: 50vw; height: 50vh;">
+${tab.title}%0A
+by ${new Date().toJSON().split('T')[0]}%0A
+${url}%0A
+#f2etw
+</textarea>`,
+      'index': tab.index + 1});
   }
 });
 

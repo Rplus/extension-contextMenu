@@ -2,8 +2,16 @@
    "name": "__MSG_ext_name__",
    "version": "0.2.0",
    "manifest_version": 2,
-   "permissions": [ "activeTab", "contextMenus" , "https://*/", "http://*/"],
+   "permissions": [ "activeTab", "tabs", "contextMenus" , "https://*/", "http://*/"],
    "default_locale": "zh_TW",
+   "commands": {
+      "move-tab-left": {
+         "description": "move tab left"
+      },
+      "move-tab-right": {
+         "description": "move tab right"
+      }
+   },
    "background": {
      "scripts": ["context.js"]
    },

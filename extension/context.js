@@ -21,6 +21,28 @@ var parent = chrome.contextMenus.create({
   'contexts': ['page', 'link']
 });
 
+let moveTab = (dir = 1) => {
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    if (!tabs) { return; }
+    let tab = tabs[0];
+    let newIndex = Math.max(0, tab.index + dir);
+    chrome.tabs.move(tab.id, { index: newIndex });
+  });
+};
+
+chrome.commands.onCommand.addListener((command) => {
+  switch (command) {
+    case 'move-tab-left':
+      moveTab(-1);
+      break;
+    case 'move-tab-right':
+      moveTab(1);
+      break;
+    default:
+      break;
+  };
+});
+
 chrome.contextMenus.create({
   'title': '`. get Twitter text',
   'contexts': ['page', 'link'],

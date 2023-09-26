@@ -1,10 +1,10 @@
 {
    "ext_name": {
       "description": "Extension name.",
-      "message": "my context menu"
+      "message": "1. my context menu"
    },
    "ext_description": {
       "description": "Extension description.",
-      "message": "my context menu"
+      "message": "1. my context menu"
    }
 }

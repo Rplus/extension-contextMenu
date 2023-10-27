@@ -17,7 +17,7 @@
 // }
 
 var parent = chrome.contextMenus.create({
-  'title': '3. My context menus',
+  'title': '1. My context menus',
   'contexts': ['page', 'link']
 });
 
@@ -137,8 +137,9 @@ chrome.contextMenus.create({
 // });
 
 chrome.contextMenus.create({
-  'title': '1 open img by proxy',
+  'title': 'open img by proxy',
   'contexts': ['image'],
+  // 'parentId': parent,
   'onclick': function (info, tab) {
     let url = `https://proxy.duckduckgo.com/iu/?u=${info.srcUrl}`;
     window.open(url);
@@ -146,7 +147,8 @@ chrome.contextMenus.create({
 });
 
 chrome.contextMenus.create({
-  'title': '2 open img by wsrv',
+  'title': 'open img by wsrv',
+  // 'parentId': parent,
   'contexts': ['image'],
   'onclick': function (info, tab) {
     let url = `https://proxy.duckduckgo.com/iu/?u=${info.srcUrl}`;
@@ -166,7 +168,7 @@ chrome.contextMenus.create({
 });
 
 chrome.contextMenus.create({
-  'title': 'Youtube embed',
+  'title': '4 Youtube embed',
   'contexts': ['page', 'link'],
   'parentId': parent,
   'targetUrlPatterns': ['*://www.youtube.com/watch*'],

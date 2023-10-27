@@ -61,6 +61,27 @@ var parent = chrome.contextMenus.create({
 // });
 
 chrome.contextMenus.create({
+  'title': '1 Youtube redirect',
+  'contexts': ['page', 'link'],
+  'parentId': parent,
+  'targetUrlPatterns': ['*://www.youtube.com/watch*', 'https://www.youtube.com/shorts/*'],
+  'onclick': function (info, tab) {
+    var pattern_yt = /www\.youtube\.com\/[watch|shorts]/;
+    // let pattern_yt = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube(-nocookie)?\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|live\/|v\/)?)([\w\-]+)(\S+)?$/;
+    // ^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube(-nocookie)?\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|live\/|v\/)?)([\w\-]+)(\S+)?$
+    var url = info.linkUrl || info.pageUrl;
+    if (!url || !pattern_yt.test(url)) { return; }
+		let domains = [
+			'vid.puffyan.us',
+			// 'invidious.io.lol',
+      'onion.tube',
+		];
+    window.open(url.replace('www.youtube.com', domains[1]))
+  }
+});
+
+
+chrome.contextMenus.create({
   'title': 'z. 繁',
   'contexts': ['page', 'link'],
   'parentId': parent,

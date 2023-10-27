@@ -91,25 +91,27 @@ chrome.contextMenus.create({
   }
 });
 
-// chrome.contextMenus.create({
-//   'title': '2. FB',
-//   'contexts': ['page', 'link'],
-//   'parentId': parent,
-//   'onclick': function (info, tab) {
-//     var url = info.linkUrl || info.pageUrl;
-//     if (/www\.facebook\.com/.test(url)) {
-//       window.open(url.replace(/www\.facebook\.com/, 'm.facebook.com'));
-//     } else if (/m\.facebook\.com/.test(url)) {
-//       var personalUrl = url.match(/story_fbid=(\d+)&id=(\d+)/);
+chrome.contextMenus.create({
+  'title': '2. FB',
+  'contexts': ['page', 'link'],
+  'parentId': parent,
+  'onclick': function (info, tab) {
+    var url = info.linkUrl || info.pageUrl;
+    if (/www\.facebook\.com/.test(url)) {
+      window.open(url.replace(/www\.facebook\.com/, 'm.facebook.com'));
+    } else if (/m\.facebook\.com/.test(url)) {
+      let qs = new URLSearchParams(new URL(url).search);
+      let story_fbid = qs?.get('story_fbid');
+      let id = qs?.get('id');
 
-//       if (personalUrl) {
-//         window.open('https://www.facebook.com/' + personalUrl[2] + '/posts/' + personalUrl[1]);
-//       } else {
-//         window.open(url.replace(/m\.facebook\.com/, 'www.facebook.com'));
-//       }
-//     }
-//   }
-// });
+      if (story_fbid && id) {
+        window.open(`https://www.facebook.com/${id}/posts/${story_fbid}`);
+      } else {
+        window.open(url.replace(/m\.facebook\.com/, 'www.facebook.com'));
+      }
+    }
+  }
+});
 
 chrome.contextMenus.create({
   'title': '3. open iframe',
